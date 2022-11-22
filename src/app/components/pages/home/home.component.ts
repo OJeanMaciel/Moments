@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
 
   // todo Search
 
+  faSearch = faSearch
+  searchTerm: string = ""
 
   constructor(private momentService: MomentService) { }
 
@@ -38,4 +40,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  search(e: Event): void {
+    const target = e.target as HTMLInputElement
+    const value = target.value
+
+    this.moments = this.allMoments.filter((moment) => {
+      return moment.title.toLocaleLowerCase().includes(value);
+    });
+  }
 }
